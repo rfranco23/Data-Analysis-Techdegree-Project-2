@@ -1,0 +1,2 @@
+# Basketball Team Stats Tool
+The provided "app.py" file is an application that reads from the "constants" data (`PLAYERS` and `TEAMS`) in `constants.py`. The code within the file has taken a copy of the data in 'constants.py' and cleaned it in a manner so as to create a streamlined interactive console-based basketball statistics tool. The data was translated into a new collection that makes more sense for Python to do its comparisons.
