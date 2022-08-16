@@ -23,17 +23,16 @@ def clean_data():
             player['experience'] = False
             inexperienced.append(player)
         player['height'] = int(player['height'][:2])
-    return players
 
 
 def balance_teams(team):
     while len(experienced) != 0 and len(team) < 3:
         team.append(experienced.pop(random.randrange(len(experienced))))
-        
+
     while len(inexperienced) != 0 and len(team) < 6:
         team.append(inexperienced.pop(random.randrange(len(inexperienced))))
-        
-        
+
+
 def extract_names(team):
     player_names = []
     for player in team:
@@ -58,45 +57,46 @@ def guardians(team):
 
 def main_function():
     clean_data()
-    balance_teams(panthers)
-    balance_teams(bandits)
-    balance_teams(warriors)
-    
-    
+    balance_teams(updated_teams[0])
+    balance_teams(updated_teams[1])
+    balance_teams(updated_teams[2])
+
+
 if __name__ == "__main__":
     main_function()
     app_running = True
 
-while app_running:
-    print("\n**** MENU ****\n\nPlease choose from the following:\n1) Display Team Stats\n2) Quit\n\n")
-    option = input("Please choose an option: ")
-    if option == "1":
-        print("\nPick from the following teams:\n--------------------\n\n1) Panthers\n2) Bandits\n3) Warriors\n\n")
-        team_number = input("Please choose an option (1, 2 or 3): ")
-        try:
+    while app_running:
+        print("\n**** MENU ****\n\nPlease choose from the following:\n1) Display Team Stats\n2) Quit\n\n")
+        option = input("Please choose an option: ")
+        if option == "1":
+            print("\nPick from the following teams:\n--------------------\n\n1) Panthers\n2) Bandits\n3) Warriors\n\n")
+            team_number = input("Please choose an option (1, 2 or 3): ")
+            try:
 
-            def doc_string():
-                return (f"""
-            
-Team {teams[int(team_number) - 1]} Stats
---------------------
+                def doc_string():
+                    return (f"""
 
-Total Players: {len(panthers)}
-Experienced Players: {3}
-Inexperienced Players: {3}
-Player Names: {extract_names(updated_teams[int(team_number) - 1])}
-Average Player Height: {avg_height(updated_teams[int(team_number) - 1])} inches
-Player Guardians: {guardians(updated_teams[int(team_number) - 1])}
-                
-                """)
-            
-            print(doc_string())
-            input("Press Enter to continue...")
-        except (ValueError, IndexError) as err:
-            print(f"{err}. Please choose again.")
+    Team {teams[int(team_number) - 1]} Stats
+    --------------------
+
+    Total Players: {len(panthers)}
+    Experienced Players: {3}
+    Inexperienced Players: {3}
+    Player Names: {extract_names(updated_teams[int(team_number) - 1])}
+    Average Player Height: {avg_height(updated_teams[int(team_number) - 1])} inches
+    Player Guardians: {guardians(updated_teams[int(team_number) - 1])}
+
+                    """)
+
+                print(doc_string())
+                input("Press Enter to continue...")
+            except (ValueError, IndexError) as err:
+                print(f"{err}. Please choose again.")
+                input("Press Enter to continue... ")
+        elif option == "2":
+            print("Goodbye!")
+            app_running = False
+        else:
+            print(f"\"{option}\" is not a valid entry, please choose an available option. ")
             input("Press Enter to continue... ")
-    elif option == "2":
-        app_running = False
-    else:
-        print(f"\"{option}\" is not a valid entry, please choose an available option. ")
-        input("Press Enter to continue... ")
